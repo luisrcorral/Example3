@@ -123,7 +123,9 @@ public class MainActivity extends AppCompatActivity {
         NotifBuilder.setContentText("This is the detail of the notification");
 
         Intent notificationIntent = new Intent(this, ChildActivity.class);
+        notificationIntent.putExtra("myData", "This string comes from the previous activity");
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+
         NotifBuilder.setContentIntent(contentIntent);
 
         NotificationManager MyNotification = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
