@@ -1,19 +1,19 @@
 package mx.itesm.tc2024_2018_lab3;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.NotificationCompat;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
 
     Context context;
@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
         context = getApplicationContext();
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         ThirdDialogConf.setTitle("Confirmation Dialog");
         ThirdDialogConf.setMessage("This is the Text of the Dialog");
         ThirdDialogConf.setIcon(R.mipmap.ic_launcher);
+
         final EditText TextInput = new EditText(context);
         TextInput.setTextColor(Color.BLUE);
         ThirdDialogConf.setView(TextInput);
@@ -117,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
         /*Step 5: Bar Notification ---------------------------------------------------------------*/
 
         int NOTIF_ID = 1234;
-        NotificationCompat.Builder NotifBuilder = new NotificationCompat.Builder(this);
+        Notification.Builder NotifBuilder = new Notification.Builder(this);
         NotifBuilder.setSmallIcon(R.mipmap.ic_launcher);
         NotifBuilder.setContentTitle("Important Notification");
         NotifBuilder.setContentText("This is the detail of the notification");
 
-        Intent notificationIntent = new Intent(this, ChildActivity.class);
+        Intent notificationIntent = new Intent(context, ChildActivity.class);
         notificationIntent.putExtra("myData", "This string comes from the previous activity");
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 
